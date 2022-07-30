@@ -1,0 +1,500 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Workout App API
+  description: Final Project API for Team BitsPlease
+  contact:
+    name: Team VirTex
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/SCHADAL3_1/WorkoutAppApi/1.0.0
+components:
+  parameters:
+    activityId:
+      name: activityId
+      in: path
+      description: An id to uniquely locate an Activity
+      required: true
+      schema:
+        $ref: "#/components/schemas/Activity/properties/id"
+    reviewDifficulty:
+      name: difficulty
+      in: query
+      description: The review's difficulty value
+      schema:
+        $ref: "#/components/schemas/Review/properties/difficulty"
+    reviewId:
+      name: reviewId
+      in: path
+      description: An id to uniquely locate a Review
+      required: true
+      schema:
+        $ref: "#/components/schemas/Review/properties/id"
+    reviewRating:
+      name: rating
+      in: query
+      description: The review's rating
+      schema:
+        $ref: "#/components/schemas/Review/properties/rating"
+    segmentId:
+      name: segmentId
+      in: path
+      description: An id to uniquely locate a Segment
+      required: true
+      schema:
+        $ref: "#/components/schemas/Segment/properties/id"
+    userId:
+      name: userId
+      in: path
+      description: An id to uniquely locate a User
+      required: true
+      schema:
+        $ref: "#/components/schemas/User/properties/id"
+  requestBodies:
+    Activity:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Activity"
+    Review:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Review"
+    ReviewQuery:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rating:
+                $ref: "#/components/schemas/Review/properties/rating"
+              difficulty:
+                $ref: "#/components/schemas/Review/properties/difficulty"
+    Segment:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Segment"
+    User:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/User"
+  responses:
+    200Updated:
+      description: The specified resource was updated successfully
+    201Created:
+      description: The specified resource was created successfully
+    204Deleted:
+      description: The specified resource was deleted successfully
+    404NotFound:
+      description: One or more specified resources were not found
+  schemas:
+    Activity:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "activity-123"
+        userId:
+          $ref: "#/components/schemas/User/properties/id"
+        eventStart:
+          type: string
+          format: datetime
+          example: "2022-01-31T13:30:00Z"
+        eventStop:
+          type: string
+          format: datetime
+          example: "2022-01-31T15:00:00Z"
+        totalDuration:
+          type: integer
+          description: "The length of the activity in minutes"
+          example: 90
+        activityType:
+          type: string
+          enum: ["Walk", "Hike", "Run", "Swim", "Cycle", "Mountain Bike"]
+        segments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Segment"
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/Review"
+        avgRating:
+          type: integer
+          format: float
+          example: 4.5
+      required: ["id", "userId"]
+    Location:
+      type: object
+      properties:
+        lat:
+          type: integer
+          format: float
+          description: "The latitudinal value accurate to 5 decimal places (~1.1 meters)"
+          example: 37.80609
+        lon:
+          type: integer
+          format: float
+          description: "The longitudinal value accurate to 5 decimal places (~1.1 meters)"
+          example: -122.45123
+      required: ["lat", "lon"]
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "review-123"
+        activityId:
+          $ref: "#/components/schemas/Activity/properties/id"
+        userId:
+          $ref: "#/components/schemas/User/properties/id"
+        timestamp:
+          type: string
+          format: datetime
+          example: "2022-01-31T13:30:00Z"
+        rating:
+          type: integer
+          enum: [1, 2, 3, 4, 5]
+        difficulty:
+          type: string
+          enum: ["Easy", "Medium", "Hard"]
+        review:
+          type: string
+          example: "Wow, nice job! :D"
+      required: ["id", "activityId", "userId", "timestamp", "rating", "difficulty"]
+    Segment:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "segment-123"
+        activityId:
+          $ref: "#/components/schemas/Activity/properties/id"
+        index:
+          type: integer
+          minimum: 0
+          example: 0
+        timestamp:
+          type: string
+          format: datetime
+          example: "2022-01-31T13:30:00Z"
+        location:
+          $ref: "#/components/schemas/Location"
+      required: ["id", "activityId"]
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "user-123"
+        firstName:
+          type: string
+          example: "John"
+        middleName:
+          type: string
+          example: ""
+        lastName:
+          type: string
+          example: "Smith"
+        dateOfBirth:
+          type: string
+          format: date
+          example: "01/31/2022"
+        gender:
+          type: string
+          example: "Male"
+        email:
+          type: string
+          format: email
+          example: "john.smith@bitsplease.com"
+        city:
+          type: string
+          example: "Baltimore"
+        state:
+          type: string
+          example: "MD"
+        zip:
+          type: string
+          example: "21218"
+        created:
+          type: string
+          format: date
+          example: "01/31/2022"
+        numActivities:
+          type: integer
+          example: 5
+      required: ["id", "firstName", "lastName", "email"]
+paths:
+  /user:
+    post:
+      summary: Create a new User object
+      description: Instantiate User object and populate it with data
+      requestBody:
+        $ref: "#/components/requestBodies/User"
+      responses:
+        201:
+          $ref: "#/components/responses/201Created"
+    put:
+      summary: Update an existing User object
+      description: Updates based on provided userId
+      requestBody:
+        $ref: "#/components/requestBodies/User"
+      responses:
+        200:
+          $ref: "#/components/responses/200Updated"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /user/{userId}:
+    get:
+      summary: Get single User
+      description: Find the existing User with the provided userId
+      parameters:
+        - $ref: "#/components/parameters/userId"
+      responses:
+        200:
+          description: The found User object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        404:
+          $ref: "#/components/responses/404NotFound"
+    delete:
+      summary: Delete User
+      description: Deletes an existing User object
+      parameters:
+        - $ref: "#/components/parameters/userId"
+      responses:
+        204:
+          $ref: "#/components/responses/204Deleted"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /user/{userId}/activities:
+    get:
+      summary: Get all Activities for a User
+      description: Gets a list of all known Activities associated with a provided User
+      parameters:
+        - $ref: "#/components/parameters/userId"
+      responses:
+        200:
+          description: The set of all Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Activity"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /user/{userId}/reviews:
+    get:
+      summary: Get all Reviews made by a User
+      description: Gets a list of all known Reviews posted by a User
+      parameters:
+        - $ref: "#/components/parameters/userId"
+      responses:
+        200:
+          description: The set of all Reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Review"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /users:
+    get:
+      summary: Get all Users
+      description: Gets a list of all known Users
+      responses:
+        200:
+          description: The set of all Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+  /activity:
+    post:
+      summary: Create a new Activity object
+      description: Instantiate Activity object and populate it with data
+      requestBody:
+        $ref: "#/components/requestBodies/Activity"
+      responses:
+        201:
+          $ref: "#/components/responses/201Created"
+    put:
+      summary: Update an existing Activity object
+      description: Updates based on provided activityId
+      requestBody:
+        $ref: "#/components/requestBodies/Activity"
+      responses:
+        200:
+          $ref: "#/components/responses/200Updated"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /activity/{activityId}:
+    get:
+      summary: Get single Activity
+      description: Find an existing Activity with the provided activityId
+      parameters:
+        - $ref: "#/components/parameters/activityId"
+      responses:
+        200:
+          description: The found Activity object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activity"
+        404:
+          $ref: "#/components/responses/404NotFound"
+    delete:
+      summary: Delete Activity
+      description: Deletes an existing Activity object
+      parameters:
+        - $ref: "#/components/parameters/activityId"
+      responses:
+        204:
+          $ref: "#/components/responses/204Deleted"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /activity/{activityId}/reviews:
+    get:
+      summary: Get all Reviews posted on an Activity
+      description: Gets a list of all known Reviews posted on an Activity
+      parameters:
+        - $ref: "#/components/parameters/activityId"
+      responses:
+        200:
+          description: The set of all Reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Review"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /activity/{activityId}/segment:
+    post:
+      summary: Create a new Segment object within an Activity
+      description: Instantiate Segment object, populate it with data, and attach to Activity
+      parameters:
+        - $ref: "#/components/parameters/activityId"
+      requestBody:
+        $ref: "#/components/requestBodies/Segment"
+      responses:
+        201:
+          $ref: "#/components/responses/201Created"
+        404:
+          $ref: "#/components/responses/404NotFound"
+    put:
+      summary: Update an existing Segment object
+      description: Updates based on provided segmentId
+      parameters:
+        - $ref: "#/components/parameters/activityId"
+      requestBody:
+        $ref: "#/components/requestBodies/Segment"
+      responses:
+        200:
+          $ref: "#/components/responses/200Updated"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /activity/{activityId}/segment/{segmentId}:
+    get:
+      summary: Get single Segment
+      description: Find an existing Segment with the provided segmentId
+      parameters:
+        - $ref: "#/components/parameters/activityId"
+        - $ref: "#/components/parameters/segmentId"
+      responses:
+        200:
+          description: The found Segment object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Segment"
+        404:
+          description: No Segment found with provided segmentId attached to Activity with provided activityId
+    delete:
+      summary: Delete Segment within Activity
+      description: Deletes an existing Segment object inside of an Activity
+      parameters:
+        - $ref: "#/components/parameters/activityId"
+        - $ref: "#/components/parameters/segmentId"
+      responses:
+        204:
+          $ref: "#/components/responses/204Deleted"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /review:
+    post:
+      summary: Create a new Review object
+      description: Instantiate Review object and populate it with data
+      requestBody:
+        $ref: "#/components/requestBodies/Review"
+      responses:
+        201:
+          $ref: "#/components/responses/201Created"
+    put:
+      summary: Update an existing Review object
+      description: Updates based on provided reviewId
+      requestBody:
+        $ref: "#/components/requestBodies/Review"
+      responses:
+        200:
+          $ref: "#/components/responses/200Updated"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /review/{reviewId}:
+    get:
+      summary: Get single Review
+      description: Find the existing Review with the provided reviewId
+      parameters:
+        - $ref: "#/components/parameters/reviewId"
+      responses:
+        200:
+          description: The found Review object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        404:
+          $ref: "#/components/responses/404NotFound"
+    delete:
+      summary: Delete Review
+      description: Deletes an existing Review object
+      parameters:
+        - $ref: "#/components/parameters/reviewId"
+      responses:
+        204:
+          $ref: "#/components/responses/204Deleted"
+        404:
+          $ref: "#/components/responses/404NotFound"
+  /review/query:
+    get:
+      summary: Find reviews via a search query
+      description: Narrow down reviews by querying by multiple parameters
+      parameters:
+        - $ref: "#/components/parameters/reviewDifficulty"
+        - $ref: "#/components/parameters/reviewRating"
+      responses:
+        200:
+          description: The set of Reviews that match search query
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Review"
