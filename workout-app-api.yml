@@ -1,15 +1,19 @@
 openapi: 3.0.0
+
 info:
   version: 1.0.0
   title: Workout App API
   description: Final Project API for Team BitsPlease
   contact:
     name: Team VirTex
+
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/SCHADAL3_1/WorkoutAppApi/1.0.0
+
 components:
+
   parameters:
     activityId:
       name: activityId
@@ -51,6 +55,7 @@ components:
       required: true
       schema:
         $ref: "#/components/schemas/User/properties/id"
+
   requestBodies:
     Activity:
       required: true
@@ -87,6 +92,7 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/User"
+
   responses:
     200Updated:
       description: The specified resource was updated successfully
@@ -96,6 +102,7 @@ components:
       description: The specified resource was deleted successfully
     404NotFound:
       description: One or more specified resources were not found
+
   schemas:
     Activity:
       type: object
@@ -133,6 +140,7 @@ components:
           format: float
           example: 4.5
       required: ["id", "userId"]
+
     Location:
       type: object
       properties:
@@ -147,6 +155,7 @@ components:
           description: "The longitudinal value accurate to 5 decimal places (~1.1 meters)"
           example: -122.45123
       required: ["lat", "lon"]
+
     Review:
       type: object
       properties:
@@ -171,6 +180,7 @@ components:
           type: string
           example: "Wow, nice job! :D"
       required: ["id", "activityId", "userId", "timestamp", "rating", "difficulty"]
+
     Segment:
       type: object
       properties:
@@ -190,6 +200,7 @@ components:
         location:
           $ref: "#/components/schemas/Location"
       required: ["id", "activityId"]
+
     User:
       type: object
       properties:
@@ -233,7 +244,9 @@ components:
           type: integer
           example: 5
       required: ["id", "firstName", "lastName", "email"]
+
 paths:
+
   /user:
     post:
       summary: Create a new User object
@@ -253,6 +266,7 @@ paths:
           $ref: "#/components/responses/200Updated"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /user/{userId}:
     get:
       summary: Get single User
@@ -278,6 +292,7 @@ paths:
           $ref: "#/components/responses/204Deleted"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /user/{userId}/activities:
     get:
       summary: Get all Activities for a User
@@ -295,6 +310,7 @@ paths:
                   $ref: "#/components/schemas/Activity"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /user/{userId}/reviews:
     get:
       summary: Get all Reviews made by a User
@@ -312,6 +328,7 @@ paths:
                   $ref: "#/components/schemas/Review"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /users:
     get:
       summary: Get all Users
@@ -325,6 +342,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/User"
+
   /activity:
     post:
       summary: Create a new Activity object
@@ -344,6 +362,7 @@ paths:
           $ref: "#/components/responses/200Updated"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /activity/{activityId}:
     get:
       summary: Get single Activity
@@ -369,6 +388,7 @@ paths:
           $ref: "#/components/responses/204Deleted"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /activity/{activityId}/reviews:
     get:
       summary: Get all Reviews posted on an Activity
@@ -386,6 +406,7 @@ paths:
                   $ref: "#/components/schemas/Review"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /activity/{activityId}/segment:
     post:
       summary: Create a new Segment object within an Activity
@@ -411,6 +432,7 @@ paths:
           $ref: "#/components/responses/200Updated"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /activity/{activityId}/segment/{segmentId}:
     get:
       summary: Get single Segment
@@ -438,6 +460,7 @@ paths:
           $ref: "#/components/responses/204Deleted"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /review:
     post:
       summary: Create a new Review object
@@ -457,6 +480,7 @@ paths:
           $ref: "#/components/responses/200Updated"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /review/{reviewId}:
     get:
       summary: Get single Review
@@ -482,6 +506,7 @@ paths:
           $ref: "#/components/responses/204Deleted"
         404:
           $ref: "#/components/responses/404NotFound"
+
   /review/query:
     get:
       summary: Find reviews via a search query
