@@ -8,9 +8,8 @@ info:
     name: Team VirTex
 
 servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/SCHADAL3_1/WorkoutAppApi/1.0.0
+  - description: localhost
+    url: http://localhost:8080/workoutApp
 
 components:
 
