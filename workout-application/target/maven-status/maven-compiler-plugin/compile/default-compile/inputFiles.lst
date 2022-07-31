@@ -1,3 +1,4 @@
+/home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/model/ReviewRating.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/model/Location.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/configuration/LocalDateConverter.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/api/UsersApi.java
@@ -20,6 +21,7 @@
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/api/ApiOriginFilter.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/model/Activity.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/api/UserApiController.java
+/home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/model/ReviewDifficulty.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/api/ApiException.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/api/ReviewApi.java
 /home/tyler/jhu/service_api_design_and_development/team-virtex-workout-app/workout-application/src/main/java/io/swagger/configuration/LocalDateTimeConverter.java

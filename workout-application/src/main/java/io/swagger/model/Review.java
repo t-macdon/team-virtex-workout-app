@@ -4,8 +4,8 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.model.Activitypropertiesid;
-import io.swagger.model.Userpropertiesid;
+import io.swagger.model.ReviewDifficulty;
+import io.swagger.model.ReviewRating;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * Review
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 
 
 public class Review   {
@@ -23,52 +23,16 @@ public class Review   {
   private String id = null;
 
   @JsonProperty("activityId")
-  private Activitypropertiesid activityId = null;
+  private String activityId = null;
 
   @JsonProperty("userId")
-  private Userpropertiesid userId = null;
+  private String userId = null;
 
   @JsonProperty("timestamp")
   private String timestamp = null;
 
-  /**
-   * Gets or Sets rating
-   */
-  public enum RatingEnum {
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_3(3),
-    
-    NUMBER_4(4),
-    
-    NUMBER_5(5);
-
-    private Integer value;
-
-    RatingEnum(Integer value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static RatingEnum fromValue(String text) {
-      for (RatingEnum b : RatingEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
   @JsonProperty("rating")
-  private RatingEnum rating = null;
+  private ReviewRating rating = null;
 
   /**
    * Gets or Sets difficulty
@@ -106,7 +70,7 @@ public class Review   {
   private DifficultyEnum difficulty = null;
 
   @JsonProperty("review")
-  private String review = null;
+  private ReviewDifficulty review = null;
 
   public Review id(String id) {
     this.id = id;
@@ -128,7 +92,7 @@ public class Review   {
     this.id = id;
   }
 
-  public Review activityId(Activitypropertiesid activityId) {
+  public Review activityId(String activityId) {
     this.activityId = activityId;
     return this;
   }
@@ -137,19 +101,18 @@ public class Review   {
    * Get activityId
    * @return activityId
    **/
-  @Schema(required = true, description = "")
+  @Schema(example = "activity-123", required = true, description = "")
       @NotNull
 
-    @Valid
-    public Activitypropertiesid getActivityId() {
+    public String getActivityId() {
     return activityId;
   }
 
-  public void setActivityId(Activitypropertiesid activityId) {
+  public void setActivityId(String activityId) {
     this.activityId = activityId;
   }
 
-  public Review userId(Userpropertiesid userId) {
+  public Review userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -158,15 +121,14 @@ public class Review   {
    * Get userId
    * @return userId
    **/
-  @Schema(required = true, description = "")
+  @Schema(example = "user-123", required = true, description = "")
       @NotNull
 
-    @Valid
-    public Userpropertiesid getUserId() {
+    public String getUserId() {
     return userId;
   }
 
-  public void setUserId(Userpropertiesid userId) {
+  public void setUserId(String userId) {
     this.userId = userId;
   }
 
@@ -190,7 +152,7 @@ public class Review   {
     this.timestamp = timestamp;
   }
 
-  public Review rating(RatingEnum rating) {
+  public Review rating(ReviewRating rating) {
     this.rating = rating;
     return this;
   }
@@ -202,11 +164,12 @@ public class Review   {
   @Schema(required = true, description = "")
       @NotNull
 
-    public RatingEnum getRating() {
+    @Valid
+    public ReviewRating getRating() {
     return rating;
   }
 
-  public void setRating(RatingEnum rating) {
+  public void setRating(ReviewRating rating) {
     this.rating = rating;
   }
 
@@ -230,7 +193,7 @@ public class Review   {
     this.difficulty = difficulty;
   }
 
-  public Review review(String review) {
+  public Review review(ReviewDifficulty review) {
     this.review = review;
     return this;
   }
@@ -239,13 +202,14 @@ public class Review   {
    * Get review
    * @return review
    **/
-  @Schema(example = "Wow, nice job! :D", description = "")
+  @Schema(description = "")
   
-    public String getReview() {
+    @Valid
+    public ReviewDifficulty getReview() {
     return review;
   }
 
-  public void setReview(String review) {
+  public void setReview(ReviewDifficulty review) {
     this.review = review;
   }
 

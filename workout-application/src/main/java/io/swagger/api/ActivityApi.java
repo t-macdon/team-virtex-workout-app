@@ -6,10 +6,8 @@
 package io.swagger.api;
 
 import io.swagger.model.Activity;
-import io.swagger.model.Activitypropertiesid;
 import io.swagger.model.Review;
 import io.swagger.model.Segment;
-import io.swagger.model.Segmentpropertiesid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -36,7 +34,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 @Validated
 public interface ActivityApi {
 
@@ -47,7 +45,7 @@ public interface ActivityApi {
         @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
     @RequestMapping(value = "/activity/{activityId}",
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> activityActivityIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId);
+    ResponseEntity<Void> activityActivityIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId);
 
 
     @Operation(summary = "Get single Activity", description = "Find an existing Activity with the provided activityId", tags={  })
@@ -58,7 +56,7 @@ public interface ActivityApi {
     @RequestMapping(value = "/activity/{activityId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Activity> activityActivityIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId);
+    ResponseEntity<Activity> activityActivityIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId);
 
 
     @Operation(summary = "Get all Reviews posted on an Activity", description = "Gets a list of all known Reviews posted on an Activity", tags={  })
@@ -69,7 +67,7 @@ public interface ActivityApi {
     @RequestMapping(value = "/activity/{activityId}/reviews",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Review>> activityActivityIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId);
+    ResponseEntity<List<Review>> activityActivityIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId);
 
 
     @Operation(summary = "Create a new Segment object within an Activity", description = "Instantiate Segment object, populate it with data, and attach to Activity", tags={  })
@@ -80,7 +78,7 @@ public interface ActivityApi {
     @RequestMapping(value = "/activity/{activityId}/segment",
         consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Void> activityActivityIdSegmentPost(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body);
+    ResponseEntity<Void> activityActivityIdSegmentPost(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body);
 
 
     @Operation(summary = "Update an existing Segment object", description = "Updates based on provided segmentId", tags={  })
@@ -91,7 +89,7 @@ public interface ActivityApi {
     @RequestMapping(value = "/activity/{activityId}/segment",
         consumes = { "application/json" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<Void> activityActivityIdSegmentPut(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body);
+    ResponseEntity<Void> activityActivityIdSegmentPut(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body);
 
 
     @Operation(summary = "Delete Segment within Activity", description = "Deletes an existing Segment object inside of an Activity", tags={  })
@@ -101,7 +99,7 @@ public interface ActivityApi {
         @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
     @RequestMapping(value = "/activity/{activityId}/segment/{segmentId}",
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> activityActivityIdSegmentSegmentIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId, @Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") Segmentpropertiesid segmentId);
+    ResponseEntity<Void> activityActivityIdSegmentSegmentIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId, @Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId);
 
 
     @Operation(summary = "Get single Segment", description = "Find an existing Segment with the provided segmentId", tags={  })
@@ -112,7 +110,7 @@ public interface ActivityApi {
     @RequestMapping(value = "/activity/{activityId}/segment/{segmentId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Segment> activityActivityIdSegmentSegmentIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId, @Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") Segmentpropertiesid segmentId);
+    ResponseEntity<Segment> activityActivityIdSegmentSegmentIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId, @Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId);
 
 
     @Operation(summary = "Create a new Activity object", description = "Instantiate Activity object and populate it with data", tags={  })

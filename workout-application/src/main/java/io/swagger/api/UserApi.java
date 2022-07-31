@@ -8,7 +8,6 @@ package io.swagger.api;
 import io.swagger.model.Activity;
 import io.swagger.model.Review;
 import io.swagger.model.User;
-import io.swagger.model.Userpropertiesid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -35,7 +34,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 @Validated
 public interface UserApi {
 
@@ -67,7 +66,7 @@ public interface UserApi {
     @RequestMapping(value = "/user/{userId}/activities",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Activity>> userUserIdActivitiesGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId);
+    ResponseEntity<List<Activity>> userUserIdActivitiesGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
 
 
     @Operation(summary = "Delete User", description = "Deletes an existing User object", tags={  })
@@ -77,7 +76,7 @@ public interface UserApi {
         @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
     @RequestMapping(value = "/user/{userId}",
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> userUserIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId);
+    ResponseEntity<Void> userUserIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
 
 
     @Operation(summary = "Get single User", description = "Find the existing User with the provided userId", tags={  })
@@ -88,7 +87,7 @@ public interface UserApi {
     @RequestMapping(value = "/user/{userId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<User> userUserIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId);
+    ResponseEntity<User> userUserIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
 
 
     @Operation(summary = "Get all Reviews made by a User", description = "Gets a list of all known Reviews posted by a User", tags={  })
@@ -99,7 +98,7 @@ public interface UserApi {
     @RequestMapping(value = "/user/{userId}/reviews",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Review>> userUserIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId);
+    ResponseEntity<List<Review>> userUserIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
 
 }
 

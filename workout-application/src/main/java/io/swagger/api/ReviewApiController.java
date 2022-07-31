@@ -1,9 +1,8 @@
 package io.swagger.api;
 
 import io.swagger.model.Review;
-import io.swagger.model.Reviewpropertiesdifficulty;
-import io.swagger.model.Reviewpropertiesid;
-import io.swagger.model.Reviewpropertiesrating;
+import io.swagger.model.ReviewDifficulty;
+import io.swagger.model.ReviewRating;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -35,7 +34,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 @RestController
 public class ReviewApiController implements ReviewApi {
 
@@ -61,11 +60,11 @@ public class ReviewApiController implements ReviewApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Review>> reviewQueryGet(@Parameter(in = ParameterIn.QUERY, description = "The review's difficulty value" ,schema=@Schema()) @Valid @RequestParam(value = "difficulty", required = false) Reviewpropertiesdifficulty difficulty,@Parameter(in = ParameterIn.QUERY, description = "The review's rating" ,schema=@Schema()) @Valid @RequestParam(value = "rating", required = false) Reviewpropertiesrating rating) {
+    public ResponseEntity<List<Review>> reviewQueryGet(@Parameter(in = ParameterIn.QUERY, description = "The review's difficulty value" ,schema=@Schema()) @Valid @RequestParam(value = "difficulty", required = false) ReviewDifficulty difficulty,@Parameter(in = ParameterIn.QUERY, description = "The review's rating" ,schema=@Schema()) @Valid @RequestParam(value = "rating", required = false) ReviewRating rating) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Review>>(objectMapper.readValue("[ {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Wow, nice job! :D\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}, {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Wow, nice job! :D\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<Review>>(objectMapper.readValue("[ {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Easy\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}, {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Easy\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<Review>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -75,16 +74,16 @@ public class ReviewApiController implements ReviewApi {
         return new ResponseEntity<List<Review>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> reviewReviewIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") Reviewpropertiesid reviewId) {
+    public ResponseEntity<Void> reviewReviewIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") String reviewId) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Review> reviewReviewIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") Reviewpropertiesid reviewId) {
+    public ResponseEntity<Review> reviewReviewIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") String reviewId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Review>(objectMapper.readValue("{\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Wow, nice job! :D\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}", Review.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Review>(objectMapper.readValue("{\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Easy\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}", Review.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Review>(HttpStatus.INTERNAL_SERVER_ERROR);

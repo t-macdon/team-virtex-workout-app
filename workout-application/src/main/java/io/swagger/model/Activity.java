@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.model.Review;
 import io.swagger.model.Segment;
-import io.swagger.model.Userpropertiesid;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ import javax.validation.constraints.*;
  * Activity
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 
 
 public class Activity   {
@@ -26,7 +25,7 @@ public class Activity   {
   private String id = null;
 
   @JsonProperty("userId")
-  private Userpropertiesid userId = null;
+  private String userId = null;
 
   @JsonProperty("eventStart")
   private String eventStart = null;
@@ -109,7 +108,7 @@ public class Activity   {
     this.id = id;
   }
 
-  public Activity userId(Userpropertiesid userId) {
+  public Activity userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -118,15 +117,14 @@ public class Activity   {
    * Get userId
    * @return userId
    **/
-  @Schema(required = true, description = "")
+  @Schema(example = "user-123", required = true, description = "")
       @NotNull
 
-    @Valid
-    public Userpropertiesid getUserId() {
+    public String getUserId() {
     return userId;
   }
 
-  public void setUserId(Userpropertiesid userId) {
+  public void setUserId(String userId) {
     this.userId = userId;
   }
 

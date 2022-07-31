@@ -3,7 +3,6 @@ package io.swagger.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.model.Activitypropertiesid;
 import io.swagger.model.Location;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
@@ -14,7 +13,7 @@ import javax.validation.constraints.*;
  * Segment
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 
 
 public class Segment   {
@@ -22,7 +21,7 @@ public class Segment   {
   private String id = null;
 
   @JsonProperty("activityId")
-  private Activitypropertiesid activityId = null;
+  private String activityId = null;
 
   @JsonProperty("index")
   private Integer index = null;
@@ -53,7 +52,7 @@ public class Segment   {
     this.id = id;
   }
 
-  public Segment activityId(Activitypropertiesid activityId) {
+  public Segment activityId(String activityId) {
     this.activityId = activityId;
     return this;
   }
@@ -62,15 +61,14 @@ public class Segment   {
    * Get activityId
    * @return activityId
    **/
-  @Schema(required = true, description = "")
+  @Schema(example = "activity-123", required = true, description = "")
       @NotNull
 
-    @Valid
-    public Activitypropertiesid getActivityId() {
+    public String getActivityId() {
     return activityId;
   }
 
-  public void setActivityId(Activitypropertiesid activityId) {
+  public void setActivityId(String activityId) {
     this.activityId = activityId;
   }
 

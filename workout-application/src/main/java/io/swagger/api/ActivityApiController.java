@@ -1,10 +1,8 @@
 package io.swagger.api;
 
 import io.swagger.model.Activity;
-import io.swagger.model.Activitypropertiesid;
 import io.swagger.model.Review;
 import io.swagger.model.Segment;
-import io.swagger.model.Segmentpropertiesid;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -36,7 +34,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 @RestController
 public class ActivityApiController implements ActivityApi {
 
@@ -52,16 +50,16 @@ public class ActivityApiController implements ActivityApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> activityActivityIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId) {
+    public ResponseEntity<Void> activityActivityIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Activity> activityActivityIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId) {
+    public ResponseEntity<Activity> activityActivityIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Activity>(objectMapper.readValue("{\n  \"totalDuration\" : 90,\n  \"eventStop\" : \"2022-01-31T15:00:00Z\",\n  \"reviews\" : [ {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Wow, nice job! :D\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Wow, nice job! :D\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ],\n  \"eventStart\" : \"2022-01-31T13:30:00Z\",\n  \"avgRating\" : 5,\n  \"id\" : \"activity-123\",\n  \"activityType\" : \"Walk\",\n  \"userId\" : \"{}\",\n  \"segments\" : [ {\n    \"activityId\" : \"{}\",\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"activityId\" : \"{}\",\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ]\n}", Activity.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Activity>(objectMapper.readValue("{\n  \"totalDuration\" : 90,\n  \"eventStop\" : \"2022-01-31T15:00:00Z\",\n  \"reviews\" : [ {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Easy\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Easy\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ],\n  \"eventStart\" : \"2022-01-31T13:30:00Z\",\n  \"avgRating\" : 5,\n  \"id\" : \"activity-123\",\n  \"activityType\" : \"Walk\",\n  \"userId\" : \"user-123\",\n  \"segments\" : [ {\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ]\n}", Activity.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Activity>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,11 +69,11 @@ public class ActivityApiController implements ActivityApi {
         return new ResponseEntity<Activity>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Review>> activityActivityIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId) {
+    public ResponseEntity<List<Review>> activityActivityIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Review>>(objectMapper.readValue("[ {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Wow, nice job! :D\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}, {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Wow, nice job! :D\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<Review>>(objectMapper.readValue("[ {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Easy\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}, {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Easy\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<Review>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -85,26 +83,26 @@ public class ActivityApiController implements ActivityApi {
         return new ResponseEntity<List<Review>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> activityActivityIdSegmentPost(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
+    public ResponseEntity<Void> activityActivityIdSegmentPost(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> activityActivityIdSegmentPut(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
+    public ResponseEntity<Void> activityActivityIdSegmentPut(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> activityActivityIdSegmentSegmentIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") Segmentpropertiesid segmentId) {
+    public ResponseEntity<Void> activityActivityIdSegmentSegmentIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Segment> activityActivityIdSegmentSegmentIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") Activitypropertiesid activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") Segmentpropertiesid segmentId) {
+    public ResponseEntity<Segment> activityActivityIdSegmentSegmentIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Segment>(objectMapper.readValue("{\n  \"activityId\" : \"{}\",\n  \"index\" : 0,\n  \"location\" : {\n    \"lon\" : 6,\n    \"lat\" : 0\n  },\n  \"id\" : \"segment-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}", Segment.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Segment>(objectMapper.readValue("{\n  \"index\" : 0,\n  \"location\" : {\n    \"lon\" : 6,\n    \"lat\" : 0\n  },\n  \"id\" : \"segment-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}", Segment.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Segment>(HttpStatus.INTERNAL_SERVER_ERROR);

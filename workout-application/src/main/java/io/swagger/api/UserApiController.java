@@ -3,7 +3,6 @@ package io.swagger.api;
 import io.swagger.model.Activity;
 import io.swagger.model.Review;
 import io.swagger.model.User;
-import io.swagger.model.Userpropertiesid;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -35,7 +34,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 @RestController
 public class UserApiController implements UserApi {
 
@@ -61,11 +60,11 @@ public class UserApiController implements UserApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Activity>> userUserIdActivitiesGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId) {
+    public ResponseEntity<List<Activity>> userUserIdActivitiesGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Activity>>(objectMapper.readValue("[ {\n  \"totalDuration\" : 90,\n  \"eventStop\" : \"2022-01-31T15:00:00Z\",\n  \"reviews\" : [ {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Wow, nice job! :D\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Wow, nice job! :D\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ],\n  \"eventStart\" : \"2022-01-31T13:30:00Z\",\n  \"avgRating\" : 5,\n  \"id\" : \"activity-123\",\n  \"activityType\" : \"Walk\",\n  \"userId\" : \"{}\",\n  \"segments\" : [ {\n    \"activityId\" : \"{}\",\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"activityId\" : \"{}\",\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ]\n}, {\n  \"totalDuration\" : 90,\n  \"eventStop\" : \"2022-01-31T15:00:00Z\",\n  \"reviews\" : [ {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Wow, nice job! :D\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Wow, nice job! :D\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ],\n  \"eventStart\" : \"2022-01-31T13:30:00Z\",\n  \"avgRating\" : 5,\n  \"id\" : \"activity-123\",\n  \"activityType\" : \"Walk\",\n  \"userId\" : \"{}\",\n  \"segments\" : [ {\n    \"activityId\" : \"{}\",\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"activityId\" : \"{}\",\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ]\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<Activity>>(objectMapper.readValue("[ {\n  \"totalDuration\" : 90,\n  \"eventStop\" : \"2022-01-31T15:00:00Z\",\n  \"reviews\" : [ {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Easy\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Easy\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ],\n  \"eventStart\" : \"2022-01-31T13:30:00Z\",\n  \"avgRating\" : 5,\n  \"id\" : \"activity-123\",\n  \"activityType\" : \"Walk\",\n  \"userId\" : \"user-123\",\n  \"segments\" : [ {\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ]\n}, {\n  \"totalDuration\" : 90,\n  \"eventStop\" : \"2022-01-31T15:00:00Z\",\n  \"reviews\" : [ {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Easy\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"difficulty\" : \"Easy\",\n    \"review\" : \"Easy\",\n    \"rating\" : 1,\n    \"id\" : \"review-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ],\n  \"eventStart\" : \"2022-01-31T13:30:00Z\",\n  \"avgRating\" : 5,\n  \"id\" : \"activity-123\",\n  \"activityType\" : \"Walk\",\n  \"userId\" : \"user-123\",\n  \"segments\" : [ {\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  }, {\n    \"index\" : 0,\n    \"location\" : {\n      \"lon\" : 6,\n      \"lat\" : 0\n    },\n    \"id\" : \"segment-123\",\n    \"timestamp\" : \"2022-01-31T13:30:00Z\"\n  } ]\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<Activity>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -75,12 +74,12 @@ public class UserApiController implements UserApi {
         return new ResponseEntity<List<Activity>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> userUserIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId) {
+    public ResponseEntity<Void> userUserIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<User> userUserIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId) {
+    public ResponseEntity<User> userUserIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -94,11 +93,11 @@ public class UserApiController implements UserApi {
         return new ResponseEntity<User>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Review>> userUserIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") Userpropertiesid userId) {
+    public ResponseEntity<List<Review>> userUserIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Review>>(objectMapper.readValue("[ {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Wow, nice job! :D\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}, {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Wow, nice job! :D\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<Review>>(objectMapper.readValue("[ {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Easy\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}, {\n  \"difficulty\" : \"Easy\",\n  \"review\" : \"Easy\",\n  \"rating\" : 1,\n  \"id\" : \"review-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<Review>>(HttpStatus.INTERNAL_SERVER_ERROR);

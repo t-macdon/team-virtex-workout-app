@@ -6,9 +6,8 @@
 package io.swagger.api;
 
 import io.swagger.model.Review;
-import io.swagger.model.Reviewpropertiesdifficulty;
-import io.swagger.model.Reviewpropertiesid;
-import io.swagger.model.Reviewpropertiesrating;
+import io.swagger.model.ReviewDifficulty;
+import io.swagger.model.ReviewRating;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -35,7 +34,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-30T20:31:30.649-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
 @Validated
 public interface ReviewApi {
 
@@ -65,7 +64,7 @@ public interface ReviewApi {
     @RequestMapping(value = "/review/query",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Review>> reviewQueryGet(@Parameter(in = ParameterIn.QUERY, description = "The review's difficulty value" ,schema=@Schema()) @Valid @RequestParam(value = "difficulty", required = false) Reviewpropertiesdifficulty difficulty, @Parameter(in = ParameterIn.QUERY, description = "The review's rating" ,schema=@Schema()) @Valid @RequestParam(value = "rating", required = false) Reviewpropertiesrating rating);
+    ResponseEntity<List<Review>> reviewQueryGet(@Parameter(in = ParameterIn.QUERY, description = "The review's difficulty value" ,schema=@Schema()) @Valid @RequestParam(value = "difficulty", required = false) ReviewDifficulty difficulty, @Parameter(in = ParameterIn.QUERY, description = "The review's rating" ,schema=@Schema()) @Valid @RequestParam(value = "rating", required = false) ReviewRating rating);
 
 
     @Operation(summary = "Delete Review", description = "Deletes an existing Review object", tags={  })
@@ -75,7 +74,7 @@ public interface ReviewApi {
         @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
     @RequestMapping(value = "/review/{reviewId}",
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> reviewReviewIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") Reviewpropertiesid reviewId);
+    ResponseEntity<Void> reviewReviewIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") String reviewId);
 
 
     @Operation(summary = "Get single Review", description = "Find the existing Review with the provided reviewId", tags={  })
@@ -86,7 +85,7 @@ public interface ReviewApi {
     @RequestMapping(value = "/review/{reviewId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Review> reviewReviewIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") Reviewpropertiesid reviewId);
+    ResponseEntity<Review> reviewReviewIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Review", required=true, schema=@Schema()) @PathVariable("reviewId") String reviewId);
 
 }
 
