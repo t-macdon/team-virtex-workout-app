@@ -21,40 +21,40 @@ components:
       description: An id to uniquely locate an Activity
       required: true
       schema:
-        $ref: "#/components/schemas/Activity/properties/id"
+        $ref: "#/components/schemas/ActivityId"
     reviewDifficulty:
       name: difficulty
       in: query
       description: The review's difficulty value
       schema:
-        $ref: "#/components/schemas/Review/properties/difficulty"
+        $ref: "#/components/schemas/ReviewDifficulty"
     reviewId:
       name: reviewId
       in: path
       description: An id to uniquely locate a Review
       required: true
       schema:
-        $ref: "#/components/schemas/Review/properties/id"
+        $ref: "#/components/schemas/ReviewId"
     reviewRating:
       name: rating
       in: query
       description: The review's rating
       schema:
-        $ref: "#/components/schemas/Review/properties/rating"
+        $ref: "#/components/schemas/ReviewRating"
     segmentId:
       name: segmentId
       in: path
       description: An id to uniquely locate a Segment
       required: true
       schema:
-        $ref: "#/components/schemas/Segment/properties/id"
+        $ref: "#/components/schemas/SegmentId"
     userId:
       name: userId
       in: path
       description: An id to uniquely locate a User
       required: true
       schema:
-        $ref: "#/components/schemas/User/properties/id"
+        $ref: "#/components/schemas/UserId"
 
   requestBodies:
     Activity:
@@ -77,9 +77,9 @@ components:
             type: object
             properties:
               rating:
-                $ref: "#/components/schemas/Review/properties/rating"
+                $ref: "#/components/schemas/ReviewRating"
               difficulty:
-                $ref: "#/components/schemas/Review/properties/difficulty"
+                $ref: "#/components/schemas/ReviewDifficulty"
     Segment:
       required: true
       content:
@@ -104,14 +104,18 @@ components:
       description: One or more specified resources were not found
 
   schemas:
+
+    ActivityId:
+      type: string
+      example: "activity-123"
+
     Activity:
       type: object
       properties:
         id:
-          type: string
-          example: "activity-123"
+          $ref: "#/components/schemas/ActivityId"
         userId:
-          $ref: "#/components/schemas/User/properties/id"
+          $ref: "#/components/schemas/UserId"
         eventStart:
           type: string
           format: datetime
@@ -156,30 +160,43 @@ components:
           example: -122.45123
       required: ["lat", "lon"]
 
+    ReviewDifficulty:
+      type: string
+      enum: ["Easy", "Medium", "Hard"]
+
+    ReviewId:
+      type: string
+      example: "review-123"
+
+    ReviewRating:
+      type: integer
+      enum: [1, 2, 3, 4, 5]
+
     Review:
       type: object
       properties:
         id:
-          type: string
-          example: "review-123"
+          $ref: "#/components/schemas/ReviewId"
         activityId:
-          $ref: "#/components/schemas/Activity/properties/id"
+          $ref: "#/components/schemas/ActivityId"
         userId:
-          $ref: "#/components/schemas/User/properties/id"
+          $ref: "#/components/schemas/UserId"
         timestamp:
           type: string
           format: datetime
           example: "2022-01-31T13:30:00Z"
         rating:
-          type: integer
-          enum: [1, 2, 3, 4, 5]
+          $ref: "#/components/schemas/ReviewRating"
         difficulty:
           type: string
           enum: ["Easy", "Medium", "Hard"]
         review:
-          type: string
-          example: "Wow, nice job! :D"
+          $ref: "#/components/schemas/ReviewDifficulty"
       required: ["id", "activityId", "userId", "timestamp", "rating", "difficulty"]
+
+    SegmentId:
+      type: string
+      example: "segment-123"
 
     Segment:
       type: object
@@ -188,7 +205,7 @@ components:
           type: string
           example: "segment-123"
         activityId:
-          $ref: "#/components/schemas/Activity/properties/id"
+          $ref: "#/components/schemas/ActivityId"
         index:
           type: integer
           minimum: 0
@@ -201,12 +218,15 @@ components:
           $ref: "#/components/schemas/Location"
       required: ["id", "activityId"]
 
+    UserId:
+      type: string
+      example: "user-123"
+
     User:
       type: object
       properties:
         id:
-          type: string
-          example: "user-123"
+          $ref: "#/components/schemas/UserId"
         firstName:
           type: string
           example: "John"
