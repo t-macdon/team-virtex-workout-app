@@ -10,13 +10,13 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * User
+ * UserProfile
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-21T17:54:50.241-04:00[America/New_York]")
 
 
-public class User   {
+public class UserProfile   {
   @JsonProperty("id")
   private String id = null;
 
@@ -53,7 +53,7 @@ public class User   {
   @JsonProperty("numActivities")
   private Integer numActivities = null;
 
-  public User id(String id) {
+  public UserProfile id(String id) {
     this.id = id;
     return this;
   }
@@ -73,7 +73,7 @@ public class User   {
     this.id = id;
   }
 
-  public User firstName(String firstName) {
+  public UserProfile firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -93,7 +93,7 @@ public class User   {
     this.firstName = firstName;
   }
 
-  public User middleName(String middleName) {
+  public UserProfile middleName(String middleName) {
     this.middleName = middleName;
     return this;
   }
@@ -112,7 +112,7 @@ public class User   {
     this.middleName = middleName;
   }
 
-  public User lastName(String lastName) {
+  public UserProfile lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -132,7 +132,7 @@ public class User   {
     this.lastName = lastName;
   }
 
-  public User dateOfBirth(LocalDate dateOfBirth) {
+  public UserProfile dateOfBirth(LocalDate dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
     return this;
   }
@@ -152,7 +152,7 @@ public class User   {
     this.dateOfBirth = dateOfBirth;
   }
 
-  public User gender(String gender) {
+  public UserProfile gender(String gender) {
     this.gender = gender;
     return this;
   }
@@ -171,7 +171,7 @@ public class User   {
     this.gender = gender;
   }
 
-  public User email(String email) {
+  public UserProfile email(String email) {
     this.email = email;
     return this;
   }
@@ -191,7 +191,7 @@ public class User   {
     this.email = email;
   }
 
-  public User city(String city) {
+  public UserProfile city(String city) {
     this.city = city;
     return this;
   }
@@ -210,7 +210,7 @@ public class User   {
     this.city = city;
   }
 
-  public User state(String state) {
+  public UserProfile state(String state) {
     this.state = state;
     return this;
   }
@@ -229,7 +229,7 @@ public class User   {
     this.state = state;
   }
 
-  public User zip(String zip) {
+  public UserProfile zip(String zip) {
     this.zip = zip;
     return this;
   }
@@ -248,7 +248,7 @@ public class User   {
     this.zip = zip;
   }
 
-  public User created(LocalDate created) {
+  public UserProfile created(LocalDate created) {
     this.created = created;
     return this;
   }
@@ -268,7 +268,7 @@ public class User   {
     this.created = created;
   }
 
-  public User numActivities(Integer numActivities) {
+  public UserProfile numActivities(Integer numActivities) {
     this.numActivities = numActivities;
     return this;
   }
@@ -296,19 +296,19 @@ public class User   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
-    return Objects.equals(this.id, user.id) &&
-        Objects.equals(this.firstName, user.firstName) &&
-        Objects.equals(this.middleName, user.middleName) &&
-        Objects.equals(this.lastName, user.lastName) &&
-        Objects.equals(this.dateOfBirth, user.dateOfBirth) &&
-        Objects.equals(this.gender, user.gender) &&
-        Objects.equals(this.email, user.email) &&
-        Objects.equals(this.city, user.city) &&
-        Objects.equals(this.state, user.state) &&
-        Objects.equals(this.zip, user.zip) &&
-        Objects.equals(this.created, user.created) &&
-        Objects.equals(this.numActivities, user.numActivities);
+    UserProfile userProfile = (UserProfile) o;
+    return Objects.equals(this.id, userProfile.id) &&
+        Objects.equals(this.firstName, userProfile.firstName) &&
+        Objects.equals(this.middleName, userProfile.middleName) &&
+        Objects.equals(this.lastName, userProfile.lastName) &&
+        Objects.equals(this.dateOfBirth, userProfile.dateOfBirth) &&
+        Objects.equals(this.gender, userProfile.gender) &&
+        Objects.equals(this.email, userProfile.email) &&
+        Objects.equals(this.city, userProfile.city) &&
+        Objects.equals(this.state, userProfile.state) &&
+        Objects.equals(this.zip, userProfile.zip) &&
+        Objects.equals(this.created, userProfile.created) &&
+        Objects.equals(this.numActivities, userProfile.numActivities);
   }
 
   @Override
@@ -319,7 +319,7 @@ public class User   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class User {\n");
+    sb.append("class UserProfile {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");

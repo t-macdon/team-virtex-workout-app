@@ -5,7 +5,9 @@
  */
 package io.swagger.api;
 
-import io.swagger.model.User;
+import io.swagger.model.Activity;
+import io.swagger.model.Review;
+import io.swagger.model.UserProfile;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -32,17 +34,80 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-21T17:54:50.241-04:00[America/New_York]")
 @Validated
 public interface UsersApi {
 
     @Operation(summary = "Get all Users", description = "Gets a list of all known Users", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "The set of all Users", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class)))) })
+        @ApiResponse(responseCode = "200", description = "The set of all Users", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserProfile.class)))) })
     @RequestMapping(value = "/users",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<User>> usersGet();
+    ResponseEntity<List<UserProfile>> usersGet();
+
+
+    @Operation(summary = "Create a new User object", description = "Instantiate User object and populate it with data", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "201", description = "The specified resource was created successfully") })
+    @RequestMapping(value = "/users",
+        consumes = { "application/json" }, 
+        method = RequestMethod.POST)
+    ResponseEntity<Void> usersPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody UserProfile body);
+
+
+    @Operation(summary = "Update an existing User object", description = "Updates based on provided userId", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "The specified resource was updated successfully"),
+        
+        @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
+    @RequestMapping(value = "/users",
+        consumes = { "application/json" }, 
+        method = RequestMethod.PUT)
+    ResponseEntity<Void> usersPut(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody UserProfile body);
+
+
+    @Operation(summary = "Get all Activities for a User", description = "Gets a list of all known Activities associated with a provided User", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "The set of all Users", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Activity.class)))),
+        
+        @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
+    @RequestMapping(value = "/users/{userId}/activities",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<List<Activity>> usersUserIdActivitiesGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
+
+
+    @Operation(summary = "Delete User", description = "Deletes an existing User object", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "204", description = "The specified resource was deleted successfully"),
+        
+        @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
+    @RequestMapping(value = "/users/{userId}",
+        method = RequestMethod.DELETE)
+    ResponseEntity<Void> usersUserIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
+
+
+    @Operation(summary = "Get single User", description = "Find the existing User with the provided userId", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "The found User object", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserProfile.class))),
+        
+        @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
+    @RequestMapping(value = "/users/{userId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<UserProfile> usersUserIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
+
+
+    @Operation(summary = "Get all Reviews made by a User", description = "Gets a list of all known Reviews posted by a User", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "The set of all Reviews", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Review.class)))),
+        
+        @ApiResponse(responseCode = "404", description = "One or more specified resources were not found") })
+    @RequestMapping(value = "/users/{userId}/reviews",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<List<Review>> usersUserIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
 
 }
 

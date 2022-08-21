@@ -1,6 +1,8 @@
 package io.swagger.api;
 
-import io.swagger.model.User;
+import io.swagger.model.Activity;
+import io.swagger.model.Review;
+import io.swagger.model.UserProfile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -29,14 +31,18 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-21T17:54:50.241-04:00[America/New_York]")
 @RestController
 public class UsersApiController implements UsersApi {
 
     private static final Logger log = LoggerFactory.getLogger(UsersApiController.class);
+
+    public static HashMap<String, UserProfile> ID_TO_USER_PROFILE_MAP = new HashMap<>();
 
     private final ObjectMapper objectMapper;
 
@@ -48,18 +54,94 @@ public class UsersApiController implements UsersApi {
         this.request = request;
     }
 
-    public ResponseEntity<List<User>> usersGet() {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<User>>(objectMapper.readValue("[ {\n  \"zip\" : \"21218\",\n  \"firstName\" : \"John\",\n  \"lastName\" : \"Smith\",\n  \"gender\" : \"Male\",\n  \"city\" : \"Baltimore\",\n  \"created\" : \"2000-01-23\",\n  \"numActivities\" : 5,\n  \"middleName\" : \"\",\n  \"dateOfBirth\" : \"2000-01-23\",\n  \"id\" : \"user-123\",\n  \"state\" : \"MD\",\n  \"email\" : \"john.smith@bitsplease.com\"\n}, {\n  \"zip\" : \"21218\",\n  \"firstName\" : \"John\",\n  \"lastName\" : \"Smith\",\n  \"gender\" : \"Male\",\n  \"city\" : \"Baltimore\",\n  \"created\" : \"2000-01-23\",\n  \"numActivities\" : 5,\n  \"middleName\" : \"\",\n  \"dateOfBirth\" : \"2000-01-23\",\n  \"id\" : \"user-123\",\n  \"state\" : \"MD\",\n  \"email\" : \"john.smith@bitsplease.com\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<User>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
+    /**
+     * Retrieve all users
+     * @return
+     */
+    public ResponseEntity<List<UserProfile>> usersGet() {
+        return new ResponseEntity<List<UserProfile>>(new ArrayList<>(ID_TO_USER_PROFILE_MAP.values()), HttpStatus.OK);
+    }
 
-        return new ResponseEntity<List<User>>(HttpStatus.NOT_IMPLEMENTED);
+    /**
+     * Create new user
+     * @param body
+     * @return
+     */
+    public ResponseEntity<Void> usersPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody UserProfile body) {
+        if (ID_TO_USER_PROFILE_MAP.containsKey(body.getId()))
+        {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        } else
+        {
+            ID_TO_USER_PROFILE_MAP.put(body.getId(), body);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        }
+    }
+
+    /**
+     * Update existing user
+     * @param body
+     * @return
+     */
+    public ResponseEntity<Void> usersPut(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody UserProfile body) {
+        if (!ID_TO_USER_PROFILE_MAP.containsKey(body.getId()))
+        {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        } else
+        {
+            ID_TO_USER_PROFILE_MAP.put(body.getId(), body);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+    }
+
+    /**
+     * Get all activities associated with a user
+     * @param userId
+     * @return
+     */
+    public ResponseEntity<List<Activity>> usersUserIdActivitiesGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
+        return new ResponseEntity<List<Activity>>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    /**
+     * Delete user by userId
+     * @param userId
+     * @return
+     */
+    public ResponseEntity<Void> usersUserIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
+        if (!ID_TO_USER_PROFILE_MAP.containsKey(body.getId()))
+        {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        } else
+        {
+            ID_TO_USER_PROFILE_MAP.remove(body.getId());
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+    }
+
+    /**
+     * Get user by userId
+     * @param userId
+     * @return
+     */
+    public ResponseEntity<UserProfile> usersUserIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
+        if (!ID_TO_USER_PROFILE_MAP.containsKey(body.getId()))
+        {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        } else
+        {
+            UserProfile up = ID_TO_USER_PROFILE_MAP.get(body.getId());
+            return new ResponseEntity<Void>(up, HttpStatus.OK);
+        }
+    }
+
+    /**
+     * Get all reviews associated with user
+     * @param userId
+     * @return
+     */
+    public ResponseEntity<List<Review>> usersUserIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId) {
+        return new ResponseEntity<List<Review>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

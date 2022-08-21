@@ -34,28 +34,36 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:35:36.035-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-21T17:54:50.241-04:00[America/New_York]")
 @RestController
-public class ActivityApiController implements ActivityApi {
+public class ActivitiesApiController implements ActivitiesApi {
 
-    private static final Logger log = LoggerFactory.getLogger(ActivityApiController.class);
+    private static final Logger log = LoggerFactory.getLogger(ActivitiesApiController.class);
+
+    public static HashMap<String, Activity> ID_TO_ACTIVITY_MAP = new HashMap<>();
 
     private final ObjectMapper objectMapper;
 
     private final HttpServletRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public ActivityApiController(ObjectMapper objectMapper, HttpServletRequest request) {
+    public ActivitiesApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
         this.request = request;
     }
 
-    public ResponseEntity<Void> activityActivityIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
+    /**
+     * Delete Activity by ID
+     */
+    public ResponseEntity<Void> activitiesActivityIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Activity> activityActivityIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
+    /**
+     * Get Activity by ID
+     */
+    public ResponseEntity<Activity> activitiesActivityIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -69,7 +77,10 @@ public class ActivityApiController implements ActivityApi {
         return new ResponseEntity<Activity>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Review>> activityActivityIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
+    /**
+     * Get reviews associated with activity ID
+     */
+    public ResponseEntity<List<Review>> activitiesActivityIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -83,43 +94,70 @@ public class ActivityApiController implements ActivityApi {
         return new ResponseEntity<List<Review>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> activityActivityIdSegmentPost(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
+    /**
+     * Add segment to Activity with activity ID
+     */
+    public ResponseEntity<Void> activitiesActivityIdSegmentPost(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> activityActivityIdSegmentPut(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
+    /**
+     * Update segment with segment ID in Activity with activity ID
+     */
+    public ResponseEntity<Void> activitiesActivityIdSegmentPut(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Segment body) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> activityActivityIdSegmentSegmentIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId) {
+    /**
+     * Remove segment with segment ID from Activity with activity ID
+     */
+    public ResponseEntity<Void> activitiesActivityIdSegmentSegmentIdDelete(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Segment> activityActivityIdSegmentSegmentIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<Segment>(objectMapper.readValue("{\n  \"index\" : 0,\n  \"location\" : {\n    \"lon\" : 6,\n    \"lat\" : 0\n  },\n  \"id\" : \"segment-123\",\n  \"timestamp\" : \"2022-01-31T13:30:00Z\"\n}", Segment.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Segment>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+    /**
+     * Get segment with segment ID from Activity with activity ID
+     */
+    public ResponseEntity<Segment> activitiesActivityIdSegmentSegmentIdGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate an Activity", required=true, schema=@Schema()) @PathVariable("activityId") String activityId,@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a Segment", required=true, schema=@Schema()) @PathVariable("segmentId") String segmentId) {
+        if (!ID_TO_ACTIVITY_MAP.containsKey(body.getId()))
+        {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        } else
+        {
+            Activity activity = ID_TO_ACTIVITY_MAP.get(body.getId());
+            return new ResponseEntity<Void>(HttpStatus.OK);
         }
-
-        return new ResponseEntity<Segment>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> activityPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Activity body) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    /**
+     * Create Activity
+     */
+    public ResponseEntity<Void> activitiesPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Activity body) {
+        if (ID_TO_ACTIVITY_MAP.containsKey(body.getId()))
+        {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        } else
+        {
+            ID_TO_ACTIVITY_MAP.put(body.getId(), body);
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        }
     }
 
-    public ResponseEntity<Void> activityPut(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Activity body) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    /**
+     * Update Activity
+     */
+    public ResponseEntity<Void> activitiesPut(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Activity body) {
+        if (!ID_TO_ACTIVITY_MAP.containsKey(body.getId()))
+        {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        } else
+        {
+            ID_TO_ACTIVITY_MAP.put(body.getId(), body);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
     }
 
 }

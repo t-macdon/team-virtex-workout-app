@@ -13,95 +13,6 @@ servers:
 
 components:
 
-  parameters:
-    activityId:
-      name: activityId
-      in: path
-      description: An id to uniquely locate an Activity
-      required: true
-      schema:
-        $ref: "#/components/schemas/ActivityId"
-    reviewDifficulty:
-      name: difficulty
-      in: query
-      description: The review's difficulty value
-      schema:
-        $ref: "#/components/schemas/ReviewDifficulty"
-    reviewId:
-      name: reviewId
-      in: path
-      description: An id to uniquely locate a Review
-      required: true
-      schema:
-        $ref: "#/components/schemas/ReviewId"
-    reviewRating:
-      name: rating
-      in: query
-      description: The review's rating
-      schema:
-        $ref: "#/components/schemas/ReviewRating"
-    segmentId:
-      name: segmentId
-      in: path
-      description: An id to uniquely locate a Segment
-      required: true
-      schema:
-        $ref: "#/components/schemas/SegmentId"
-    userId:
-      name: userId
-      in: path
-      description: An id to uniquely locate a User
-      required: true
-      schema:
-        $ref: "#/components/schemas/UserId"
-
-  requestBodies:
-    Activity:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Activity"
-    Review:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Review"
-    ReviewQuery:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              rating:
-                $ref: "#/components/schemas/ReviewRating"
-              difficulty:
-                $ref: "#/components/schemas/ReviewDifficulty"
-    Segment:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Segment"
-    User:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/User"
-
-  responses:
-    200Updated:
-      description: The specified resource was updated successfully
-    201Created:
-      description: The specified resource was created successfully
-    204Deleted:
-      description: The specified resource was deleted successfully
-    404NotFound:
-      description: One or more specified resources were not found
-
   schemas:
 
     ActivityId:
@@ -221,7 +132,7 @@ components:
       type: string
       example: "user-123"
 
-    User:
+    UserProfile:
       type: object
       properties:
         id:
@@ -264,14 +175,111 @@ components:
           example: 5
       required: ["id", "firstName", "lastName", "email"]
 
+  parameters:
+
+    activityId:
+      name: activityId
+      in: path
+      description: An id to uniquely locate an Activity
+      required: true
+      schema:
+        $ref: "#/components/schemas/ActivityId"
+
+    reviewDifficulty:
+      name: difficulty
+      in: query
+      description: The review's difficulty value
+      schema:
+        $ref: "#/components/schemas/ReviewDifficulty"
+
+    reviewId:
+      name: reviewId
+      in: path
+      description: An id to uniquely locate a Review
+      required: true
+      schema:
+        $ref: "#/components/schemas/ReviewId"
+
+    reviewRating:
+      name: rating
+      in: query
+      description: The review's rating
+      schema:
+        $ref: "#/components/schemas/ReviewRating"
+
+    segmentId:
+      name: segmentId
+      in: path
+      description: An id to uniquely locate a Segment
+      required: true
+      schema:
+        $ref: "#/components/schemas/SegmentId"
+    userId:
+      name: userId
+      in: path
+      description: An id to uniquely locate a User
+      required: true
+      schema:
+        $ref: "#/components/schemas/UserId"
+
+  requestBodies:
+    Activity:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Activity"
+
+    Review:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Review"
+
+    ReviewQuery:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rating:
+                $ref: "#/components/schemas/ReviewRating"
+              difficulty:
+                $ref: "#/components/schemas/ReviewDifficulty"
+
+    Segment:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Segment"
+    UserProfile:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UserProfile"
+
+  responses:
+    200Updated:
+      description: The specified resource was updated successfully
+    201Created:
+      description: The specified resource was created successfully
+    204Deleted:
+      description: The specified resource was deleted successfully
+    404NotFound:
+      description: One or more specified resources were not found
+
 paths:
 
-  /user:
+  /users:
     post:
       summary: Create a new User object
       description: Instantiate User object and populate it with data
       requestBody:
-        $ref: "#/components/requestBodies/User"
+        $ref: "#/components/requestBodies/UserProfile"
       responses:
         201:
           $ref: "#/components/responses/201Created"
@@ -279,14 +287,26 @@ paths:
       summary: Update an existing User object
       description: Updates based on provided userId
       requestBody:
-        $ref: "#/components/requestBodies/User"
+        $ref: "#/components/requestBodies/UserProfile"
       responses:
         200:
           $ref: "#/components/responses/200Updated"
         404:
           $ref: "#/components/responses/404NotFound"
+    get:
+      summary: Get all Users
+      description: Gets a list of all known Users
+      responses:
+        200:
+          description: The set of all Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserProfile"
 
-  /user/{userId}:
+  /users/{userId}:
     get:
       summary: Get single User
       description: Find the existing User with the provided userId
@@ -298,7 +318,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/UserProfile"
         404:
           $ref: "#/components/responses/404NotFound"
     delete:
@@ -312,7 +332,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /user/{userId}/activities:
+  /users/{userId}/activities:
     get:
       summary: Get all Activities for a User
       description: Gets a list of all known Activities associated with a provided User
@@ -330,7 +350,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /user/{userId}/reviews:
+  /users/{userId}/reviews:
     get:
       summary: Get all Reviews made by a User
       description: Gets a list of all known Reviews posted by a User
@@ -348,21 +368,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /users:
-    get:
-      summary: Get all Users
-      description: Gets a list of all known Users
-      responses:
-        200:
-          description: The set of all Users
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/User"
-
-  /activity:
+  /activities:
     post:
       summary: Create a new Activity object
       description: Instantiate Activity object and populate it with data
@@ -382,7 +388,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /activity/{activityId}:
+  /activities/{activityId}:
     get:
       summary: Get single Activity
       description: Find an existing Activity with the provided activityId
@@ -408,7 +414,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /activity/{activityId}/reviews:
+  /activities/{activityId}/reviews:
     get:
       summary: Get all Reviews posted on an Activity
       description: Gets a list of all known Reviews posted on an Activity
@@ -426,7 +432,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /activity/{activityId}/segment:
+  /activities/{activityId}/segment:
     post:
       summary: Create a new Segment object within an Activity
       description: Instantiate Segment object, populate it with data, and attach to Activity
@@ -452,7 +458,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /activity/{activityId}/segment/{segmentId}:
+  /activities/{activityId}/segment/{segmentId}:
     get:
       summary: Get single Segment
       description: Find an existing Segment with the provided segmentId
@@ -480,7 +486,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /review:
+  /reviews:
     post:
       summary: Create a new Review object
       description: Instantiate Review object and populate it with data
@@ -500,7 +506,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /review/{reviewId}:
+  /reviews/{reviewId}:
     get:
       summary: Get single Review
       description: Find the existing Review with the provided reviewId
@@ -526,7 +532,7 @@ paths:
         404:
           $ref: "#/components/responses/404NotFound"
 
-  /review/query:
+  /reviews/query:
     get:
       summary: Find reviews via a search query
       description: Narrow down reviews by querying by multiple parameters
