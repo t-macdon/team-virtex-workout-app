@@ -1,13 +1,16 @@
 package io.swagger.model;
 
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.model.Location;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
+
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * Segment
@@ -83,7 +86,7 @@ public class Segment   {
    * @return index
    **/
   @Schema(example = "0", description = "")
-  
+
   @Min(0)  public Integer getIndex() {
     return index;
   }
@@ -102,7 +105,7 @@ public class Segment   {
    * @return timestamp
    **/
   @Schema(example = "2022-01-31T13:30:00Z", description = "")
-  
+
     public String getTimestamp() {
     return timestamp;
   }
@@ -121,7 +124,7 @@ public class Segment   {
    * @return location
    **/
   @Schema(description = "")
-  
+
     @Valid
     public Location getLocation() {
     return location;
@@ -157,7 +160,7 @@ public class Segment   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Segment {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    activityId: ").append(toIndentedString(activityId)).append("\n");
     sb.append("    index: ").append(toIndentedString(index)).append("\n");

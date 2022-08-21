@@ -1,17 +1,19 @@
 package io.swagger.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.model.Review;
-import io.swagger.model.Segment;
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.validation.annotation.Validated;
+import java.util.Objects;
+
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * Activity
@@ -41,15 +43,15 @@ public class Activity   {
    */
   public enum ActivityTypeEnum {
     WALK("Walk"),
-    
+
     HIKE("Hike"),
-    
+
     RUN("Run"),
-    
+
     SWIM("Swim"),
-    
+
     CYCLE("Cycle"),
-    
+
     MOUNTAIN_BIKE("Mountain Bike");
 
     private String value;
@@ -138,7 +140,7 @@ public class Activity   {
    * @return eventStart
    **/
   @Schema(example = "2022-01-31T13:30:00Z", description = "")
-  
+
     public String getEventStart() {
     return eventStart;
   }
@@ -157,7 +159,7 @@ public class Activity   {
    * @return eventStop
    **/
   @Schema(example = "2022-01-31T15:00:00Z", description = "")
-  
+
     public String getEventStop() {
     return eventStop;
   }
@@ -176,7 +178,7 @@ public class Activity   {
    * @return totalDuration
    **/
   @Schema(example = "90", description = "The length of the activity in minutes")
-  
+
     public Integer getTotalDuration() {
     return totalDuration;
   }
@@ -195,7 +197,7 @@ public class Activity   {
    * @return activityType
    **/
   @Schema(description = "")
-  
+
     public ActivityTypeEnum getActivityType() {
     return activityType;
   }
@@ -268,7 +270,7 @@ public class Activity   {
    * @return avgRating
    **/
   @Schema(description = "")
-  
+
     public Integer getAvgRating() {
     return avgRating;
   }
@@ -307,7 +309,7 @@ public class Activity   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Activity {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    eventStart: ").append(toIndentedString(eventStart)).append("\n");

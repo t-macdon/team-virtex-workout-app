@@ -1,13 +1,16 @@
 package io.swagger.model;
 
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.threeten.bp.LocalDate;
-import org.springframework.validation.annotation.Validated;
+
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
+import org.threeten.bp.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * UserProfile
@@ -103,7 +106,7 @@ public class UserProfile   {
    * @return middleName
    **/
   @Schema(description = "")
-  
+
     public String getMiddleName() {
     return middleName;
   }
@@ -142,7 +145,7 @@ public class UserProfile   {
    * @return dateOfBirth
    **/
   @Schema(description = "")
-  
+
     @Valid
     public LocalDate getDateOfBirth() {
     return dateOfBirth;
@@ -162,7 +165,7 @@ public class UserProfile   {
    * @return gender
    **/
   @Schema(example = "Male", description = "")
-  
+
     public String getGender() {
     return gender;
   }
@@ -201,7 +204,7 @@ public class UserProfile   {
    * @return city
    **/
   @Schema(example = "Baltimore", description = "")
-  
+
     public String getCity() {
     return city;
   }
@@ -220,7 +223,7 @@ public class UserProfile   {
    * @return state
    **/
   @Schema(example = "MD", description = "")
-  
+
     public String getState() {
     return state;
   }
@@ -239,7 +242,7 @@ public class UserProfile   {
    * @return zip
    **/
   @Schema(example = "21218", description = "")
-  
+
     public String getZip() {
     return zip;
   }
@@ -258,7 +261,7 @@ public class UserProfile   {
    * @return created
    **/
   @Schema(description = "")
-  
+
     @Valid
     public LocalDate getCreated() {
     return created;
@@ -278,7 +281,7 @@ public class UserProfile   {
    * @return numActivities
    **/
   @Schema(example = "5", description = "")
-  
+
     public Integer getNumActivities() {
     return numActivities;
   }
@@ -320,7 +323,7 @@ public class UserProfile   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserProfile {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    middleName: ").append(toIndentedString(middleName)).append("\n");

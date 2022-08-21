@@ -1,15 +1,17 @@
 package io.swagger.model;
 
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.model.ReviewDifficulty;
-import io.swagger.model.ReviewRating;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.validation.annotation.Validated;
+
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * Review
@@ -39,9 +41,9 @@ public class Review   {
    */
   public enum DifficultyEnum {
     EASY("Easy"),
-    
+
     MEDIUM("Medium"),
-    
+
     HARD("Hard");
 
     private String value;
@@ -203,7 +205,7 @@ public class Review   {
    * @return review
    **/
   @Schema(description = "")
-  
+
     @Valid
     public ReviewDifficulty getReview() {
     return review;
@@ -241,7 +243,7 @@ public class Review   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Review {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    activityId: ").append(toIndentedString(activityId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
