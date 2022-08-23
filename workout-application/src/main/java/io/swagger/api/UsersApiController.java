@@ -91,7 +91,7 @@ public class UsersApiController implements UsersApi {
         List<Activity> activities = new ArrayList<>();
         for (Activity activity : ActivitiesApiController.ID_TO_ACTIVITY_MAP.values())
         {
-            if (activity.getUserId() == userId)
+            if (activity.getUserId().equals(userId))
             {
                 activities.add(activity);
             }
@@ -142,7 +142,7 @@ public class UsersApiController implements UsersApi {
         List<Review> reviews = new ArrayList<>();
         for (Review review : ReviewsApiController.ID_TO_REVIEW_MAP.values())
         {
-            if (review.getUserId() == userId)
+            if (review.getUserId().equals(userId))
             {
                 reviews.add(review);
             }

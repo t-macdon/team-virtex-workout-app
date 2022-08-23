@@ -52,6 +52,8 @@ public class ReviewsApiController implements ReviewsApi {
         } else
         {
             ID_TO_REVIEW_MAP.put(body.getId(), body);
+            // also have to add the review to the associated activity
+            ActivitiesApiController.ID_TO_ACTIVITY_MAP.get(body.getActivityId()).addReviewsItem(body);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         }
     }

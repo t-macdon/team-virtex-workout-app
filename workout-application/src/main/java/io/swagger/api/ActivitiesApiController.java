@@ -112,7 +112,7 @@ public class ActivitiesApiController implements ActivitiesApi {
             while (itr.hasNext())
             {
                 Segment segment = itr.next();
-                if (segment.getId() == body.getId())
+                if (segment.getId().equals(body.getId()))
                 {
                     segment.setActivityId(body.getActivityId());
                     segment.setId(body.getId());
@@ -140,7 +140,7 @@ public class ActivitiesApiController implements ActivitiesApi {
             while (itr.hasNext())
             {
                 Segment segment = itr.next();
-                if (segment.getId() == segmentId)
+                if (segment.getId().equals(segmentId))
                 {
                     itr.remove();
                     return new ResponseEntity<Void>(HttpStatus.OK);
@@ -162,7 +162,7 @@ public class ActivitiesApiController implements ActivitiesApi {
             Activity activity = ID_TO_ACTIVITY_MAP.get(activityId);
             for (Segment segment : activity.getSegments())
             {
-                if (segment.getId() == segmentId)
+                if (segment.getId().equals(segmentId))
                 {
                     return new ResponseEntity<Segment>(segment, HttpStatus.OK);
                 }
