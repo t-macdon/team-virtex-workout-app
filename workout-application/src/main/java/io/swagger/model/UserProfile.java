@@ -23,6 +23,12 @@ public class UserProfile   {
   @JsonProperty("id")
   private String id = null;
 
+  @JsonProperty("username")
+  private String username = null;
+
+  @JsonProperty("password")
+  private String password = null;
+
   @JsonProperty("firstName")
   private String firstName = null;
 
@@ -56,6 +62,15 @@ public class UserProfile   {
   @JsonProperty("numActivities")
   private Integer numActivities = null;
 
+  public UserProfile(String id, String username, String password, String firstName, String lastName, String email) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+  }
+
   public UserProfile id(String id) {
     this.id = id;
     return this;
@@ -74,6 +89,48 @@ public class UserProfile   {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public UserProfile username(String username) {
+    this.username = username;
+    return this;
+  }
+
+  /**
+   * Get username
+   * 
+   * @return username
+   **/
+  @Schema(example = "UserFooBar", required = true, description = "")
+  @NotNull
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public UserProfile password(String password) {
+    this.password = password;
+    return this;
+  }
+
+  /**
+   * Get password
+   * 
+   * @return password
+   **/
+  @Schema(example = "foo123", required = true, description = "")
+  @NotNull
+
+  public String getPassword() {
+    return this.password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public UserProfile firstName(String firstName) {
@@ -301,6 +358,8 @@ public class UserProfile   {
     }
     UserProfile userProfile = (UserProfile) o;
     return Objects.equals(this.id, userProfile.id) &&
+        Objects.equals(this.username, userProfile.username) &&
+        Objects.equals(this.password, userProfile.password) &&
         Objects.equals(this.firstName, userProfile.firstName) &&
         Objects.equals(this.middleName, userProfile.middleName) &&
         Objects.equals(this.lastName, userProfile.lastName) &&
@@ -316,7 +375,8 @@ public class UserProfile   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, middleName, lastName, dateOfBirth, gender, email, city, state, zip, created, numActivities);
+    return Objects.hash(id, username, password, firstName, middleName, lastName, dateOfBirth, gender, email, city,
+        state, zip, created, numActivities);
   }
 
   @Override
@@ -325,6 +385,8 @@ public class UserProfile   {
     sb.append("class UserProfile {\n");
 
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    middleName: ").append(toIndentedString(middleName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");

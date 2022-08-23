@@ -7,8 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import io.swagger.configuration.AuthInterceptor;
 import io.swagger.configuration.LocalDateConverter;
 import io.swagger.configuration.LocalDateTimeConverter;
 import springfox.documentation.oas.annotations.EnableOpenApi;
@@ -27,6 +29,17 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
     public static void main(String[] args) throws Exception {
         new SpringApplication(Swagger2SpringBoot.class).run(args);
+    }
+
+    @Configuration
+    public class AppConfig extends WebMvcConfigurerAdapter {
+        @Override
+        public void addInterceptors(InterceptorRegistry registry) {
+            registry
+                .addInterceptor(new AuthInterceptor())
+                .addPathPatterns("/activities/**", "/reviews/**", "/users/**")
+                .excludePathPatterns("/users/auth", "/users/");
+        }
     }
 
     @Configuration

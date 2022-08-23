@@ -1,12 +1,16 @@
 package io.swagger.api;
 
+import io.swagger.JWTUtil;
 import io.swagger.model.Activity;
+import io.swagger.model.AuthReq;
+import io.swagger.model.AuthRes;
 import io.swagger.model.Review;
 import io.swagger.model.UserProfile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,11 +32,16 @@ public class UsersApiController implements UsersApi {
 
     private static final Logger log = LoggerFactory.getLogger(UsersApiController.class);
 
-    public static HashMap<String, UserProfile> ID_TO_USER_PROFILE_MAP = new HashMap<>();
-
+    public static HashMap<String, UserProfile> ID_TO_USER_PROFILE_MAP = new HashMap<String, UserProfile>() {{
+        put("admin-user-1", new UserProfile("admin-user-1", "AdminFoo", "foo!123", "John", "Smith", "john.smith@bitsplease.com"));
+        put("admin-user-2", new UserProfile("admin-user-2", "AdminBar", "bar&456", "Jane", "Doe", "jane.doe@bitsplease.com"));
+    }};
+    
     private final ObjectMapper objectMapper;
 
     private final HttpServletRequest request;
+
+    private JWTUtil jwtUtil = new JWTUtil();
 
     @org.springframework.beans.factory.annotation.Autowired
     public UsersApiController(ObjectMapper objectMapper, HttpServletRequest request) {
@@ -150,4 +160,21 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
     }
 
+    public ResponseEntity<AuthRes> authenticateUser(
+            @Parameter(in = ParameterIn.DEFAULT, description = "", required = true, schema = @Schema()) @Valid @RequestBody AuthReq req) {
+        String username = req.getUsername();
+        String password = req.getPassword();
+        Collection<UserProfile> users = ID_TO_USER_PROFILE_MAP.values();
+
+        for (UserProfile user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                String token = jwtUtil.generateToken(user);
+                AuthRes res = new AuthRes(token);
+
+                return new ResponseEntity<AuthRes>(res, HttpStatus.OK);
+            }
+        }
+
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
 }

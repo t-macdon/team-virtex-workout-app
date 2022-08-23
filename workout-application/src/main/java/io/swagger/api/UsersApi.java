@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import io.swagger.model.Activity;
+import io.swagger.model.AuthReq;
+import io.swagger.model.AuthRes;
 import io.swagger.model.Review;
 import io.swagger.model.UserProfile;
 import io.swagger.v3.oas.annotations.Operation;
@@ -103,5 +105,13 @@ public interface UsersApi {
         method = RequestMethod.GET)
     ResponseEntity<List<Review>> usersUserIdReviewsGet(@Parameter(in = ParameterIn.PATH, description = "An id to uniquely locate a User", required=true, schema=@Schema()) @PathVariable("userId") String userId);
 
+    @Operation(summary = "Authenticate user", description = "Authenticate a provided username/password combo and return a JWT iff found", tags = {  })
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Successful authentication", content = @Content(mediaType = "application/json", schema = @Schema(implementation = AuthRes.class))),
+        @ApiResponse(responseCode = "401", description = "Authentication rejected")
+    })
+    @RequestMapping(value = "/users/auth", produces = { "application/json" }, method = RequestMethod.POST)
+    ResponseEntity<AuthRes> authenticateUser(
+            @Parameter(in = ParameterIn.DEFAULT, description = "The username & password", required = true, schema = @Schema()) @Valid @RequestBody AuthReq req);
 }
 
